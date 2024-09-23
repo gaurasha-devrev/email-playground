@@ -24,5 +24,4 @@ function myFunction(html1, html2) {
 
 DOM Tree Comparison
 Description: Utilize a recursive tree traversal to compare the DOM structures of both HTML documents. When identical nodes are found, mark them for de-emphasis.
-
 */
