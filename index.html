@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML Input and JavaScript Function Executor</title>
-   
+
     <style>
         /* Set up flexbox for side-by-side layout */
         .container-wrapper {
@@ -27,10 +27,6 @@
             width: 100%;
         }
 
-        .toggle-btn {
-            margin-top: 10px;
-        }
-
         .textarea-container {
             margin-bottom: 5px;
         }
@@ -43,13 +39,11 @@
         .predefined-functions {
             margin-bottom: 20px;
         }
-        
     </style>
 </head>
 <body>
 
     <div class="container-wrapper">
-        <!-- First container -->
         <div class="container">
             <h2>HTML Input 1</h2>
             <div class="textarea-container">
@@ -57,7 +51,6 @@
             </div>
         </div>
 
-        <!-- Second container -->
         <div class="container">
             <h2>HTML Input 2</h2>
             <div class="textarea-container">
@@ -91,13 +84,18 @@
     <script>
         // Load predefined function from external JS file
         function loadFunction(id) {
-            const script = document.createElement('script');
-            script.src = `functions/function${id}.js`; // Update path based on your structure
-            script.onload = () => {
-                const jsFunctionTextArea = document.getElementById('jsFunction');
-                jsFunctionTextArea.value = script.src;
-            };
-            document.head.appendChild(script);
+            fetch(`functions/function${id}.js`)
+                .then(response => {
+                    if (!response.ok) throw new Error("Network response was not ok");
+                    return response.text();
+                })
+                .then(data => {
+                    const jsFunctionTextArea = document.getElementById('jsFunction');
+                    jsFunctionTextArea.value = data;
+                })
+                .catch(error => {
+                    alert("Error loading function: " + error.message);
+                });
         }
 
         // Function to execute the user-defined JavaScript function with the HTML inputs
