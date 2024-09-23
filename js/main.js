@@ -42,59 +42,39 @@ Promise.all([extractHtmlFromEml(emlFilePath1), extractHtmlFromEml(emlFilePath2)]
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function jaccardIndex(a, b) {
+    const setA = new Set(a.split(' '));
+    const setB = new Set(b.split(' '));
+    
+    const intersection = [...setA].filter(x => setB.has(x)).length;
+    const union = new Set([...setA, ...setB]).size;
 
-  function extractTextFromHTML(html) {
-    const div = document.createElement("div");
-    div.innerHTML = html;
-    return div.innerText.split("\n").map(line => line.trim()).filter(line => line);
-  }
+    return intersection / union; // Returns Jaccard index
+}
 
-  function LCS(arr1, arr2) {
-    const len1 = arr1.length;
-    const len2 = arr2.length;
-    const dp = Array(len1 + 1).fill().map(() => Array(len2 + 1).fill(0));
-    for (let i = 1; i <= len1; i++) {
-      for (let j = 1; j <= len2; j++) {
-        if (arr1[i - 1] === arr2[j - 1]) {
-          dp[i][j] = dp[i - 1][j - 1] + 1;
-        } else {
-          dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-        }
-      }
-    }
+function myFunction(html1, html2) {
+    const parser = new DOMParser();
+    const doc1 = parser.parseFromString(html1, 'text/html');
+    const doc2 = parser.parseFromString(html2, 'text/html');
 
-    let i = len1, j = len2;
-    const lcs = [];
-    while (i > 0 && j > 0) {
-      if (arr1[i - 1] === arr2[j - 1]) {
-        lcs.unshift(arr1[i - 1]);
-        i--;
-        j--;
-      } else if (dp[i - 1][j] > dp[i][j - 1]) {
-        i--;
-      } else {
-        j--;
-      }
-    }
-    return lcs;
-  }
+    const lines1 = doc1.body.innerText.split('\n').map(line => line.trim());
+    const lines2 = doc2.body.innerText.split('\n').map(line => line.trim());
 
-  function markRepeatedContent(newEmailHTML, oldEmailHTML) {
-    const newEmailTokens = extractTextFromHTML(newEmailHTML);
-    const oldEmailTokens = extractTextFromHTML(oldEmailHTML);
-    const lcs = LCS(newEmailTokens, oldEmailTokens);
+    lines2.forEach(line => {
+        lines1.forEach(refLine => {
+            if (jaccardIndex(line, refLine) > 0.5) { // threshold for similarity
+                const regex = new RegExp(line, 'g');
+                doc2.body.innerHTML = doc2.body.innerHTML.replace(regex, `<span style="color: gray; text-decoration: line-through;">${line}</span>`);
+            }
+        });
+    });
 
-    return newEmailTokens.map(line => {
-      if (lcs.includes(line)) {
-        return `<span class="repeated">${line}</span>`;
-      } else {
-        return `<span>${line}</span>`;
-      }
-    }).join("<br>");
-  }
+    return doc2.body.innerHTML;
+}
+
 
   function processHtml1(html1, html2) {
-    const combinedHtml = markRepeatedContent(html1, html2);
+    const combinedHtml = myFunction(html1, html2);
     console.log('\n\n\n\n\n\n\n', combinedHtml, '\n\n\n\n\n\n\n');
     // Add any additional logic here
   }
