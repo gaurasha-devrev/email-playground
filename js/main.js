@@ -43,8 +43,10 @@ Promise.all([extractHtmlFromEml(emlFilePath1), extractHtmlFromEml(emlFilePath2)]
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function tokenizeEmail(content) {
-    return content.split("\n").map(line => line.trim());
+  function extractTextFromHTML(html) {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.innerText.split("\n").map(line => line.trim()).filter(line => line);
   }
 
   function LCS(arr1, arr2) {
@@ -77,14 +79,13 @@ function tokenizeEmail(content) {
     return lcs;
   }
 
-  function markRepeatedContent(newEmail, oldEmail) {
-    const newEmailTokens = tokenizeEmail(newEmail);
-    const oldEmailTokens = tokenizeEmail(oldEmail);
+  function markRepeatedContent(newEmailHTML, oldEmailHTML) {
+    const newEmailTokens = extractTextFromHTML(newEmailHTML);
+    const oldEmailTokens = extractTextFromHTML(oldEmailHTML);
     const lcs = LCS(newEmailTokens, oldEmailTokens);
 
     return newEmailTokens.map(line => {
       if (lcs.includes(line)) {
-        console.log('line', line, '\n\n');
         return `<span class="repeated">${line}</span>`;
       } else {
         return `<span>${line}</span>`;
