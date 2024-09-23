@@ -21,6 +21,10 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
+
+        .predefined-functions {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +48,16 @@
     </div>
 
     <div class="container">
-        <h2>JavaScript Function</h2>
+        <h2>Predefined JavaScript Functions</h2>
+        <div class="predefined-functions">
+            <input type="radio" name="predefined" onclick="setPredefinedFunction(1)"> Concatenate HTMLs<br>
+            <input type="radio" name="predefined" onclick="setPredefinedFunction(2)"> Swap HTMLs<br>
+            <input type="radio" name="predefined" onclick="setPredefinedFunction(3)"> Add HTML Wrappers<br>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Custom JavaScript Function</h2>
         <textarea id="jsFunction" rows="5" cols="50">function myFunction(html1, html2) {
     return html1 + ' ' + html2;
 }</textarea>
@@ -56,11 +69,30 @@
     <div id="outputContainer" class="output"></div>
 
     <script>
+        // Predefined functions
+        const predefinedFunctions = {
+            1: `function myFunction(html1, html2) {
+    return html1 + html2;
+}`,
+            2: `function myFunction(html1, html2) {
+    return html2 + html1;
+}`,
+            3: `function myFunction(html1, html2) {
+    return "<div>" + html1 + "</div><div>" + html2 + "</div>";
+}`
+        };
+
+        // Function to set predefined function based on user selection
+        function setPredefinedFunction(id) {
+            const jsFunctionTextArea = document.getElementById('jsFunction');
+            jsFunctionTextArea.value = predefinedFunctions[id];
+        }
+
         // Function to toggle between raw text and rendered HTML
         function toggleMode(inputId) {
             const textArea = document.getElementById(inputId);
             const renderedDiv = document.getElementById('rendered' + inputId.charAt(0).toUpperCase() + inputId.slice(1));
-            
+
             if (renderedDiv.style.display === 'none') {
                 renderedDiv.innerHTML = textArea.value;
                 renderedDiv.style.display = 'block';
