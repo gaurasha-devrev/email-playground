@@ -31,8 +31,9 @@ function myFunction(html1, html2) {
     return doc2.body.innerHTML;
 }
 
+// Example usage
+const email1 = "<div>Hello, this is the first email.</div><div>Best, John</div>";
+const email2 = "<div>Hello, this is the first email.</div><div>Looking forward to your reply.</div><div>Best, John</div>";
 
-/*
-The algorithm processes two HTML email strings by first parsing them into DOM structures to extract their textual content. It splits the text from both emails into individual lines and utilizes a Set to store the unique lines from the first email for efficient lookup. For each line in the second email, the algorithm checks if it exists in the set of lines from the first email. If a match is found, it replaces the line in the second email's HTML with a version wrapped in a <span> element, applying styles to gray it out and add a line-through effect, visually indicating redundancy. The final output is a modified HTML string where repeated content from the original email thread is visually de-emphasized.
-
-*/
+const new_html = myFunction(email1, email2);
+console.log(new_html);
