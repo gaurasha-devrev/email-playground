@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "he": "^1.2.0",
+    "html-entities": "^2.5.2",
+    "jsdom": "^25.0.1",
     "mailparser": "^3.7.1"
   }
 }
