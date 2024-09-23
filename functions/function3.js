@@ -6,80 +6,67 @@ function myFunction(html1, html2) {
     // Create a Set to store encoded text from doc1
     const textSet = new Set();
 
-    // Traverse doc1 to fill the Set
-    function fillTextSet(node) {
-        if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== "") {
+    // Traverse a document and add text nodes to the Set
+    function addTextNodesToSet(node) {
+        if (isNonEmptyTextNode(node)) {
             const encodedText = escapeHtml(node.nodeValue.trim());
             textSet.add(encodedText);
         } else {
-            for (let child of node.childNodes) {
-                fillTextSet(child);
-            }
+            node.childNodes.forEach(addTextNodesToSet);
         }
     }
 
-    fillTextSet(doc1.body);
-    console.log(textSet);
-
-    // Function to decode HTML entities
-    function decodeHtml(html) {
-        const txt = document.createElement("textarea");
-        txt.innerHTML = html;
-        return txt.value;
+    // Helper function to check if a node is a non-empty text node
+    function isNonEmptyTextNode(node) {
+        return node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== "";
     }
 
-    // Function to escape HTML entities
+    // Escape HTML entities
     function escapeHtml(html) {
-        var text = document.createTextNode(html);
-        var div = document.createElement('div');
-        div.appendChild(text);
+        const textNode = document.createTextNode(html);
+        const div = document.createElement('div');
+        div.appendChild(textNode);
         return div.innerHTML;
     }
-function replaceOccurrences(a, b, c) {
-  // Use a regular expression to replace all occurrences of 'a' with 'b'
-  // The 'g' flag ensures that all occurrences are replaced
-  const regex = new RegExp(escapeRegExp(a), 'g');
-  return c.replace(regex, b);
-}
 
-// Function to escape special characters for use in RegExp
-function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole string
-}
-    // Traverse doc2 and mark repeated text
-    function traverseAndMark(node) {
-        if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== "") {
+    // Decode HTML entities
+    function decodeHtml(html) {
+        const textarea = document.createElement("textarea");
+        textarea.innerHTML = html;
+        return textarea.value;
+    }
+
+    // Traverse doc1 to fill the Set
+    addTextNodesToSet(doc1.body);
+
+    // Replace occurrences of matched text in doc2
+    function replaceOccurrencesInDoc(node) {
+        if (isNonEmptyTextNode(node)) {
             const originalText = node.nodeValue.trim();
             const encodedText = escapeHtml(originalText);
 
-            // Use a temporary element to get the plain text from innerHTML
-            const tempDiv = document.createElement("div");
-            tempDiv.innerHTML = node.parentNode.innerHTML;
-            const innerText = tempDiv.innerText || tempDiv.textContent;
-
-            console.log(encodedText, textSet.has(encodedText));
-
             if (textSet.has(encodedText)) {
-                const grayOutSpan = `<span style="color: gray; text-decoration: line-through;">${encodedText}</span>`;
-                console.log(node.parentNode.innerHTML);
-                
-                // Replace using encodedText to handle special characters
-                node.parentNode.innerHTML = replaceOccurrences( encodedText,grayOutSpan, node.parentNode.innerHTML);
-                console.log(node.parentNode);
+                const markedText = `<span style="color: gray; text-decoration: line-through;">${encodedText}</span>`;
+                node.parentNode.innerHTML = replaceOccurrences(encodedText, markedText, node.parentNode.innerHTML);
             }
         } else {
-            for (let child of node.childNodes) {
-                traverseAndMark(child);
-            }
+            node.childNodes.forEach(replaceOccurrencesInDoc);
         }
     }
 
-    traverseAndMark(doc2.body);
-    console.log(doc2.body.innerHTML);
+    // Replace all occurrences of 'a' with 'b' in 'c'
+    function replaceOccurrences(a, b, c) {
+        const regex = new RegExp(escapeRegExp(a), 'g');
+        return c.replace(regex, b);
+    }
+
+    // Escape special characters for RegExp
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    }
+
+    // Traverse doc2 and replace matched text
+    replaceOccurrencesInDoc(doc2.body);
+
     return doc2.body.innerHTML;
 }
-
-/*
-Hash With DOM Tree 
-Description: Utilize a recursive tree traversal to compare the DOM structures of both HTML documents. When identical nodes are found, mark them for de-emphasis.
-*/
