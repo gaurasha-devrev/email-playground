@@ -91,6 +91,7 @@
                 })
                 .then(data => {
                     const jsFunctionTextArea = document.getElementById('jsFunction');
+                    console.log(data);
                     jsFunctionTextArea.value = data;
                 })
                 .catch(error => {
