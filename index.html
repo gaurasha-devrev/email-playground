@@ -4,17 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML Input and JavaScript Function Executor</title>
+   
     <style>
-        .container {
-            margin-bottom: 20px;
+        /* Set up flexbox for side-by-side layout */
+        .container-wrapper {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
         }
+
+        /* Style for each container */
+        .container {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensure text areas take full width of their containers */
+        textarea {
+            width: 100%;
+        }
+ 
+        /* .container {
+            margin-bottom: 20px;
+        } */
 
         .toggle-btn {
             margin-top: 10px;
         }
 
         .textarea-container {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .output {
@@ -25,51 +47,66 @@
         .predefined-functions {
             margin-bottom: 20px;
         }
+        
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>HTML Input 1</h2>
-        <div class="textarea-container">
-            <textarea id="htmlInput1" rows="10" cols="50"></textarea>
+    <div class="container-wrapper">
+        <!-- First container -->
+        <div class="container">
+            <h2>HTML Input 1</h2>
+            <div class="textarea-container">
+                <textarea id="htmlInput1" rows="10" cols="50"></textarea>
+            </div>
         </div>
-        <button class="toggle-btn" onclick="toggleMode('htmlInput1')">Toggle Raw/Rendered</button>
-        <div id="renderedHtml1" class="output"></div>
-    </div>
 
-    <div class="container">
-        <h2>HTML Input 2</h2>
-        <div class="textarea-container">
-            <textarea id="htmlInput2" rows="10" cols="50"></textarea>
+        <!-- Second container -->
+        <div class="container">
+            <h2>HTML Input 2</h2>
+            <div class="textarea-container">
+                <textarea id="htmlInput2" rows="10" cols="50"></textarea>
+            </div>
         </div>
-        <button class="toggle-btn" onclick="toggleMode('htmlInput2')">Toggle Raw/Rendered</button>
-        <div id="renderedHtml2" class="output"></div>
+        <div class="container">
+            <h2>Predefined JavaScript Functions</h2>
+            <div class="predefined-functions">
+                <input type="radio" name="predefined" onclick="setPredefinedFunction(1)"> Concatenate HTML<br>
+                <input type="radio" name="predefined" onclick="setPredefinedFunction(2)"> Swap HTML<br>
+                <input type="radio" name="predefined" onclick="setPredefinedFunction(3)"> Add Div Wrappers<br>
+            </div>
+        </div>
     </div>
+    
 
-    <div class="container">
+    <!-- <div class="container">
         <h2>Predefined JavaScript Functions</h2>
         <div class="predefined-functions">
-            <input type="radio" name="predefined" onclick="setPredefinedFunction(1)"> Concatenate HTMLs<br>
-            <input type="radio" name="predefined" onclick="setPredefinedFunction(2)"> Swap HTMLs<br>
-            <input type="radio" name="predefined" onclick="setPredefinedFunction(3)"> Add HTML Wrappers<br>
+            <input type="radio" name="predefined" onclick="setPredefinedFunction(1)"> Concatenate HTML<br>
+            <input type="radio" name="predefined" onclick="setPredefinedFunction(2)"> Swap HTML<br>
+            <input type="radio" name="predefined" onclick="setPredefinedFunction(3)"> Add Div Wrappers<br>
         </div>
-    </div>
+    </div> -->
+    <!-- <div class="container-wrapper"> -->
+        <div class="container">
+            <div class="container">
+                <h2>Custom JavaScript Function</h2>
+                <textarea id="jsFunction" rows="10" cols="50">function myFunction(html1, html2) {
+                    return html1 + ' ' + html2;
+                }</textarea>
+            </div>
 
-    <div class="container">
-        <h2>Custom JavaScript Function</h2>
-        <textarea id="jsFunction" rows="5" cols="50">function myFunction(html1, html2) {
-    return html1 + ' ' + html2;
-}</textarea>
-    </div>
-
-    <button onclick="runFunction()">Run JavaScript Function</button>
-
-    <h2>Output</h2>
-    <div id="outputContainer" class="output"></div>
+        <button onclick="runFunction()">Run JavaScript Function</button>
+        </div>
+        <div class="container">
+            <h2>Output</h2>
+            <div id="outputContainer" class="output"></div>
+            </div>
+        </div>
+    <!-- </div> -->
 
     <script>
-        // Predefined functions
+        // Predefined functions with string names
         const predefinedFunctions = {
             1: `function myFunction(html1, html2) {
     return html1 + html2;
@@ -88,20 +125,22 @@
             jsFunctionTextArea.value = predefinedFunctions[id];
         }
 
-        // Function to toggle between raw text and rendered HTML
-        function toggleMode(inputId) {
-            const textArea = document.getElementById(inputId);
-            const renderedDiv = document.getElementById('rendered' + inputId.charAt(0).toUpperCase() + inputId.slice(1));
+        // // Function to toggle between raw text and rendered HTML
+        // function toggleMode(inputId) {
+        //     const textArea = document.getElementById(inputId);
+        //     const renderedDiv = document.getElementById('rendered' + inputId.charAt(0).toUpperCase() + inputId.slice(1));
 
-            if (renderedDiv.style.display === 'none') {
-                renderedDiv.innerHTML = textArea.value;
-                renderedDiv.style.display = 'block';
-                textArea.style.display = 'none';
-            } else {
-                textArea.style.display = 'block';
-                renderedDiv.style.display = 'none';
-            }
-        }
+        //     if (textArea.style.display === 'none') {
+        //         // Show text area and hide rendered HTML
+        //         textArea.style.display = 'block';
+        //         renderedDiv.style.display = 'none';
+        //     } else {
+        //         // Hide text area and show rendered HTML
+        //         renderedDiv.innerHTML = textArea.value; // Render HTML content
+        //         textArea.style.display = 'none';
+        //         renderedDiv.style.display = 'block';
+        //     }
+        // }
 
         // Function to execute the user-defined JavaScript function with the HTML inputs
         function runFunction() {
@@ -116,7 +155,15 @@
 
                 // Display the result in the output container
                 const outputContainer = document.getElementById('outputContainer');
-                outputContainer.innerHTML = result;
+
+                // outputContainer.innerHTML = result + '<br>------------------------<br>'+html1+'<br>------------------------<br>' + html2+'<br>------------------------<br>' ;//+ jsCode;
+                outputContainer.innerHTML = result + 
+    '<div style="border-top: 2px solid #ccc; margin: 10px 0;"></div>' +
+    '<strong>HTML Input 1:</strong><br>' + html1 + 
+    '<div style="border-top: 2px solid #ccc; margin: 10px 0;"></div>' +
+    '<strong>HTML Input 2:</strong><br>' + html2 + 
+    '<div style="border-top: 2px solid #ccc; margin: 10px 0;"></div>';
+
             } catch (error) {
                 alert("Error in JavaScript function: " + error.message);
             }
