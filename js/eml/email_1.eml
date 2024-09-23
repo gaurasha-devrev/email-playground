@@ -1,0 +1,160 @@
+Return-Path: <srs0=dj8q=qp=devrev.ai=pratham.gupta@bounce.secureserver.net>
+Received: from osplwbeout01-02.prod.phx3.secureserver.net (osplwbeout01-02.prod.phx3.secureserver.net [173.201.192.14])
+ by inbound-smtp.us-east-1.amazonaws.com with SMTP id m7j1ujc2efs7il8nfl3p7dj4ilqdjaa98mp207g1
+ for v1.444d70557235797a.66e28f109a1948088b271b9bd137b3ca@hooks.dev.devrev-eng.ai;
+ Tue, 17 Sep 2024 08:48:21 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of bounce.secureserver.net designates 173.201.192.14 as permitted sender) client-ip=173.201.192.14; envelope-from=srs0=dj8q=qp=devrev.ai=pratham.gupta@bounce.secureserver.net; helo=osplwbeout01-02.prod.phx3.secureserver.net;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of bounce.secureserver.net designates 173.201.192.14 as permitted sender) client-ip=173.201.192.14; envelope-from=srs0=dj8q=qp=devrev.ai=pratham.gupta@bounce.secureserver.net; helo=osplwbeout01-02.prod.phx3.secureserver.net;
+ dkim=pass header.i=@devrev.ai;
+ dmarc=pass header.from=devrev.ai;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFGcmtKNWdhUjdKdnlRUEUrYmI5eHkvcTZBWUVIem1NbGZHalN1ZVdPUmVqTVU1M3pQSVlMWjNwb0JzRnF0WGszVUlxcXhBTGV6ZS96UzhlMkMrNVVsZFdxWnhCS1dIL3ZYYjJrNERaSjJrSlg2LytnZXFpTjBGa0FtUU5oVzVSa011ZExtZGFPZ3pJTWVFbm5HYjFEcGRsb2hKc1B5RUtaeUY2SXlJamo3aVA2emFpQ3dLZVJ0V2laRmNkeVFrM042a2ozMU42MlpLQmZFdXlvMEkzVGRKK2JXRk5rSTdhb2FqN1dob1ZwMitvNkFEci9FOEJsc3V4L0M5WTJESldua2pGaVIrblo3OUxNWUdvY3V3c2lDclBCOFpkTFowdnEzUW5Lb2ZaVFlNYzhRb0h1WTBQdTBuRWRsNzJzQ1FVajV0OUlhOGhHeTkzZnUxOEFFcFpCbk8=
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=t14Fc1mS+9U0ZofCzk/WJkUU5Yt6frVhnbJONBjzsssvpKbUqsd6PbLkFFRvpkrSFi7nnWhZhCM1SP4jLEdPi0Pi+WMmCy8aqaiQPTDPhIPiw4fsEXpJqtY/nsAXCKnIk/A3MslUSMCbPBpahtW9IhhG0Pwnr6ciKgRCw/uqC7E=; c=relaxed/simple; s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1726562902; v=1; bh=8AurLxF6AS1qVqiKwrTHD6zRQ5e1FEGX0Pxp7CTow3Q=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: from osplibsmtp03-08.prod.phx3.secureserver.net ([68.178.181.210])
+	by :WBEOUT: with ESMTPS
+	id qTs1sa98gG9yIqTsisaPb6; Tue, 17 Sep 2024 08:48:20 +0000
+X-CMAE-Analysis: v=2.4 cv=U6NZDvru c=1 sm=1 tr=0 ts=66e94254
+ a=19RRUFVlTnN+zjnfp47Zlg==:117 a=EaEq8P2WXUwA:10 a=2yES--czkp8A:10
+ a=qdHTjvGXAAAA:8 a=uXDM3tljTAE7PXrDY0EA:9 a=QEXdDO2ut3YA:10
+ a=H36lfzMDyAC95EHzd0oA:9 a=akGsLfWImoc6sk86:21 a=lqcHg5cX4UMA:10
+ a=1-CIqIdh18cPtyj4NI4X:22
+X-SECURESERVER-ACCT: devspintly@qatesting.xyz
+X-SID: qTs1sa98gG9yI
+Received: from mail-qt1-f175.google.com ([209.85.160.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by CMGW with ESMTPS
+	id qTshsLNQPVLceqTsis9DdB; Tue, 17 Sep 2024 08:48:20 +0000
+X-CM-Forward: devspintly@qatesting.xyz
+X-CMAE-Analysis: v=2.4 cv=EaoDQ+mC c=1 sm=1 tr=0 ts=66e94254 cx=a_idp_e
+ a=el8rXc1ydXQemGmBowJ8vQ==:117 a=EaEq8P2WXUwA:10 a=2yES--czkp8A:10
+ a=qdHTjvGXAAAA:8 a=uXDM3tljTAE7PXrDY0EA:9 a=QEXdDO2ut3YA:10
+ a=H36lfzMDyAC95EHzd0oA:9 a=akGsLfWImoc6sk86:21 a=lqcHg5cX4UMA:10
+ a=1-CIqIdh18cPtyj4NI4X:22
+Authentication-Results: osplibsmtp03-08.prod.phx3.secureserver.net;
+	dkim=pass header.d=devrev.ai header.b=H3fsMWOO;
+	dmarc=pass header.from=devrev.ai
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4585e250f9dso36901361cf.1
+        for <devspintly@qatesting.xyz>; Tue, 17 Sep 2024 01:48:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=devrev.ai; s=google; t=1726562899; x=1727167699; darn=qatesting.xyz;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nxmCVDh1hGlWDB4J82lVVd8M4NpJvV0K9iEQVRZbHHg=;
+        b=H3fsMWOOGbykFtM82iAU4vkK8EUyATE9rlP36C18RVNmmjHJ4k8n+D3PU4yKLOrzNr
+         gEL9asz5QNg+jypNj9+YOIBu0UhkCxJg/AhwFZqkox4TDBai4ihMb7+ZB7BDT+y7WlRF
+         vjs40U0toyXIDWzU+xvzqrOsabwGPeVt/zIgJBWa4HD21a0URnRSa5rbA6eP29gMkyey
+         oJtsbKgTiBCfnkREdbTOcdlZN8OOxykjIBc8QxodsC2Y6q2Pqjbt6t5WLy1a9WevWS0h
+         dnIQkrzAcCSVrM+6t0jbmR/YpRyyfCRSznZzbKGsRG4TYwtdNiK0wWISlDme4VuEDs+n
+         2EdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726562899; x=1727167699;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nxmCVDh1hGlWDB4J82lVVd8M4NpJvV0K9iEQVRZbHHg=;
+        b=WMVpKP0kNkCYJ+8bvzg+fx5vNeh8VjsrLqSkI+E+htCI5iSSyF4IJPFyeMvDOp+D5D
+         ewH0OYYum8dyvfHSJNnkpB0u4eNCsd7qSryZ8E1S9il4QLQQ0NwfifKuFYrKGCUND00W
+         J/mgKIwTvTYklJ0aLvgoM2D1jsVDSKDwQhqBO79klSq81M+lrSWek55NANjPQ1+rjoLI
+         p3+IehH6tTjPCqtxZAbUG85kBkbPTvPiUaCvSTrJ+ZQZ9F2a+HsxxindsTxFXiPksdD+
+         gyabWdHNqBzFejlnguvFodvx7tnwMuEQIRwTMyA9ak1S47VBFex06QMbKYJRucw4Vrm0
+         tBBQ==
+X-Gm-Message-State: AOJu0YzBsCeU7PIo8jX7hn5vwlKKn1kdjwV7WE6Sncoib+066J5MN5n5
+	miC3DTC6fQTBteh4r/oSh/jFEiIT7Ndzose2Xh56ih9ncZjX6FnKpfP/fJA6Qj6O+q3DcTCXdF8
+	ON7olELOBm5mQB7ri/sEMSPAqEDTE/72gptp0inlXuPNz1NG4yKc=
+X-Google-Smtp-Source: AGHT+IHEK2YfuHbUTAS54TlceoZgWXUkgdbay6CnAvg06lpBlw0B+tqg/Nbkhf6mo2trQS+siZOhldyvf/wtR4Bc91I=
+X-Received: by 2002:a05:622a:56:b0:453:74f8:3ed3 with SMTP id
+ d75a77b69052e-458602d9bfdmr264458501cf.15.1726562899202; Tue, 17 Sep 2024
+ 01:48:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAP8X3uanMUaGneKNGSUJhMjW5fKTu8k6FQUyWa4uYyACu0vKJw@mail.gmail.com>
+ <01000191ff2a60b4-379231ac-a897-467f-88d8-7bc88119dd06-000000@email.amazonses.com>
+ <CAP8X3uYnaw9MFXenC2_0ztH9VAhiKQF328ZoR7263OLVaty06g@mail.gmail.com>
+In-Reply-To: <CAP8X3uYnaw9MFXenC2_0ztH9VAhiKQF328ZoR7263OLVaty06g@mail.gmail.com>
+From: Pratham Gupta <Pratham.Gupta@devrev.ai>
+Date: Tue, 17 Sep 2024 14:18:08 +0530
+Message-ID: <CAP8X3uav_tqU8br2C52uwkWKcfyf==Kqe269-76yj+jjLeRD_w@mail.gmail.com>
+Subject: Re: Test email
+To: devspintly@qatesting.xyz
+Content-Type: multipart/alternative; boundary="0000000000004a2d9e06224cc011"
+X-CMAE-Envelope: MS4xfGMiJggAZG0aYC0qRhXxky0Wfk+0ZhkxDhhgtd1y2mY3Le519xP4mw5gBYm0fmrGak8VCdPrhqsvBpZwPzb44h89o8cUKordJB9whV1wu6YvUv3ezoOr
+ WR8v+t5x8UZ0fugDDJt/esfv0uII9SaWH+zXQAR73P/PuFLs0sscLhV7TnoKzZLKRw0jqAMOS8YuALnSXnGXxY8bFdP8X8i12VgB2sThY4G95VjM88l/QEb5
+ 03oXATdLA00bMsgXbuSLmCgb2rZ4d39ZLXvFRJkRMpga5tCoqG9LicLSVJ3r1cckViV4j6guDplYkiq3trj+mw==
+
+--0000000000004a2d9e06224cc011
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
++ bcc user
+
+On Tue, Sep 17, 2024 at 2:17=E2=80=AFPM Pratham Gupta <Pratham.Gupta@devrev=
+.ai>
+wrote:
+
+> Without reply hash
+>
+> On Tue, Sep 17, 2024 at 2:17=E2=80=AFPM <devspintly@qatesting.xyz> wrote:
+>
+>> TKT-11562
+>>
+>> Thank you for writing in, we will respond as soon as possible. While you
+>> wait, please add any additional information that may help us with your
+>> inquiry.
+>>
+>
+
+--0000000000004a2d9e06224cc011
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">+ bcc user</div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Tue, Sep 17, 2024 at 2:17=E2=80=AFPM Pratham =
+Gupta &lt;<a href=3D"mailto:Pratham.Gupta@devrev.ai">Pratham.Gupta@devrev.a=
+i</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr">Without reply hash</div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 17, 2024 at 2:17=E2=80=AFPM=
+ &lt;<a href=3D"mailto:devspintly@qatesting.xyz" target=3D"_blank">devspint=
+ly@qatesting.xyz</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div><u></u>
+
+
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+<div>
+ =20
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%">
+    <tbody><tr>
+      <td align=3D"center" bgcolor=3D"rgba(248,244,231,255)" role=3D"presen=
+tation" style=3D"border:none;border-radius:6px;height:22px;background:rgb(2=
+55,245,204)" valign=3D"middle">
+        <a style=3D"text-decoration:none">
+          <p style=3D"display:inline-block;color:rgb(196,156,27);font-famil=
+y:helvetica;font-size:12px;font-weight:bold;line-height:16px;margin:0px;tex=
+t-decoration:none;text-transform:none;padding:1px 8px;border-radius:6px">
+            TKT-11562
+          </p>
+        </a>
+      </td>
+    </tr>
+  </tbody></table>
+  <br>
+  <div>
+    Thank you for writing in, we will respond as soon as possible. While yo=
+u wait, please add any additional information that may help us with your in=
+quiry.
+  </div>
+</div>
+</div></blockquote></div>
+</blockquote></div>
+
+--0000000000004a2d9e06224cc011--
