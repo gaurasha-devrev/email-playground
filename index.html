@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Input and JavaScript Function Executor</title>
+    <style>
+        .container {
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn {
+            margin-top: 10px;
+        }
+
+        .textarea-container {
+            margin-bottom: 10px;
+        }
+
+        .output {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>HTML Input 1</h2>
+        <div class="textarea-container">
+            <textarea id="htmlInput1" rows="10" cols="50"></textarea>
+        </div>
+        <button class="toggle-btn" onclick="toggleMode('htmlInput1')">Toggle Raw/Rendered</button>
+        <div id="renderedHtml1" class="output"></div>
+    </div>
+
+    <div class="container">
+        <h2>HTML Input 2</h2>
+        <div class="textarea-container">
+            <textarea id="htmlInput2" rows="10" cols="50"></textarea>
+        </div>
+        <button class="toggle-btn" onclick="toggleMode('htmlInput2')">Toggle Raw/Rendered</button>
+        <div id="renderedHtml2" class="output"></div>
+    </div>
+
+    <div class="container">
+        <h2>JavaScript Function</h2>
+        <textarea id="jsFunction" rows="5" cols="50">function myFunction(html1, html2) {
+    return html1 + ' ' + html2;
+}</textarea>
+    </div>
+
+    <button onclick="runFunction()">Run JavaScript Function</button>
+
+    <h2>Output</h2>
+    <div id="outputContainer" class="output"></div>
+
+    <script>
+        // Function to toggle between raw text and rendered HTML
+        function toggleMode(inputId) {
+            const textArea = document.getElementById(inputId);
+            const renderedDiv = document.getElementById('rendered' + inputId.charAt(0).toUpperCase() + inputId.slice(1));
+            
+            if (renderedDiv.style.display === 'none') {
+                renderedDiv.innerHTML = textArea.value;
+                renderedDiv.style.display = 'block';
+                textArea.style.display = 'none';
+            } else {
+                textArea.style.display = 'block';
+                renderedDiv.style.display = 'none';
+            }
+        }
+
+        // Function to execute the user-defined JavaScript function with the HTML inputs
+        function runFunction() {
+            const html1 = document.getElementById('htmlInput1').value;
+            const html2 = document.getElementById('htmlInput2').value;
+            const jsCode = document.getElementById('jsFunction').value;
+
+            try {
+                // Create the function from user input
+                const userFunction = new Function('html1', 'html2', jsCode + '; return myFunction(html1, html2);');
+                const result = userFunction(html1, html2);
+
+                // Display the result in the output container
+                const outputContainer = document.getElementById('outputContainer');
+                outputContainer.innerHTML = result;
+            } catch (error) {
+                alert("Error in JavaScript function: " + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
