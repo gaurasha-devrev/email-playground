@@ -1,0 +1,275 @@
+Return-Path: <srs0=evjt=qk=outlook.com=annroy212@bounce.secureserver.net>
+Received: from osplwbeout01-07.prod.phx3.secureserver.net (osplwbeout01-07.prod.phx3.secureserver.net [173.201.192.54])
+ by inbound-smtp.us-east-1.amazonaws.com with SMTP id epimqc7rbsuocq9pslp266jfg5gcr91epmhj23o1
+ for v1.444d70557235797a.66e28f109a1948088b271b9bd137b3ca@hooks.dev.devrev-eng.ai;
+ Thu, 12 Sep 2024 12:42:47 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of bounce.secureserver.net designates 173.201.192.54 as permitted sender) client-ip=173.201.192.54; envelope-from=srs0=evjt=qk=outlook.com=annroy212@bounce.secureserver.net; helo=osplwbeout01-07.prod.phx3.secureserver.net;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of bounce.secureserver.net designates 173.201.192.54 as permitted sender) client-ip=173.201.192.54; envelope-from=srs0=evjt=qk=outlook.com=annroy212@bounce.secureserver.net; helo=osplwbeout01-07.prod.phx3.secureserver.net;
+ dkim=pass header.i=@outlook.com;
+ dmarc=pass header.from=outlook.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFIZ3FOTTA3bkh6emlLY1kzZHlhL1V1RFJSZFM1ZjJ4UVZ0UkVGdVVneFpFS0xESVErWlgySTFhOEtjOSt4OHVvS2FhMFhrQ3I4Y21IZnVYVjdzb241ZHdlNGpHMUNsVnhBWGxlMEVMZzAwa3pHNzc2eWVpa1paOEtaYWlSa0tzYmpVVDhRNDdNTk9saFN6MDdiRHlZam5QcGxyNlZJOVRiY0pJd0dGR2Q5YVVzcXBYTFh3WHlOYUVJMDU1OUhFTXMrUWhwUXRzWG8wUzdnYkkzanBvK3FWSFI0WDU2UUNweVU5emVwL2FnSmxlcStRZ05kK3NkQ1cwNXpRVEI4NHozaUZWaU0yQ3RKSXhjRm50QWNNR212dEFJbkowMkNvbTVvWEFFWWRrdVdPM1lPVmZHeHIwRTcrZ3NtZy9ZRzhLQWVmUGZwd1pCdVd3dXByK0owOTdhTk0=
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=b0eOLE/3U4FxdGHPMdQhs4ZX26tlEA8w9chIUXB2MBqq7fZSYyZSbrBhVNTai+xnROodZZC90Ew16xdLFmqJeaclj5dPva4cnKYkqO2UMa4w35K7Lbx+xwIPb5du6Js/s//TFHXGruYINlJ6VOj4EaV8lKAJGaVOdNLZv1gbB8A=; c=relaxed/simple; s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1726144967; v=1; bh=QGYVZBVpxFiVcrLZPdqRL/HOoP064M755vxrJxf5qMY=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: from sxb1plibsmtp01-26.prod.sxb1.secureserver.net ([92.204.81.25])
+	by :WBEOUT: with ESMTPS
+	id oj5Ss3rW9nNpvoj9qsTUlU; Thu, 12 Sep 2024 12:42:46 +0000
+X-CMAE-Analysis: v=2.4 cv=U6hZDvru c=1 sm=1 tr=0 ts=66e2e1c6
+ a=grLtGj/vhMb/5hEDJov9lA==:117 a=xqWC_Br6kY4A:10 a=EaEq8P2WXUwA:10
+ a=QcnCqVNls6sA:10 a=x7bEGLp0ZPQA:10 a=CJIEFScbwcQA:10 a=WTX3094I1sgA:10
+ a=qdHTjvGXAAAA:8 a=aGUjQ80IWOuEcnvtaGQA:9 a=CjuIK1q_8ugA:10
+ a=8oMRjKhZeRh0aZ0D:21 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10
+ a=Uz9EnhuHEG25YKoRyM-d:22 a=1-CIqIdh18cPtyj4NI4X:22
+X-SECURESERVER-ACCT: devspintly@qatesting.xyz
+X-SID: oj5Ss3rW9nNpv
+Received: from SLXP216CU001.outbound.protection.outlook.com ([52.103.74.30])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by CMGW with ESMTPS
+	id oj9jsQg31Gaa2oj9nsWIOk; Thu, 12 Sep 2024 05:42:45 -0700
+X-CM-Forward: devspintly@qatesting.xyz
+X-CMAE-Analysis: v=2.4 cv=QtyV3kyd c=1 sm=1 tr=0 ts=66e2e1c5 cx=a_idp_e
+ a=UWpDFAmSJcPd/WKw5karJg==:117 a=xqWC_Br6kY4A:10 a=EaEq8P2WXUwA:10
+ a=QcnCqVNls6sA:10 a=x7bEGLp0ZPQA:10 a=CJIEFScbwcQA:10 a=WTX3094I1sgA:10
+ a=qdHTjvGXAAAA:8 a=aGUjQ80IWOuEcnvtaGQA:9 a=CjuIK1q_8ugA:10
+ a=8oMRjKhZeRh0aZ0D:21 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10
+ a=Uz9EnhuHEG25YKoRyM-d:22 a=1-CIqIdh18cPtyj4NI4X:22
+Authentication-Results: sxb1plibsmtp01-26.prod.sxb1.secureserver.net;
+	dkim=pass header.d=outlook.com header.b=nNawxjiP;
+	dmarc=pass header.from=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=r1jEGvJNbaDGn9Hs3tq/COSq7hecnSANGcanPyTIeMwMsNRFNONhIxBykLcrKK8rpYzy1gs0ZWSXLNPm/95IBtxq6no+OSFadU96tFhEsWoZgbV/0iXJ3hc6Bs86pwgsLPxpCF1IYh/BTlwdGmOcbCavkuO+Kw8obIvlPFkMbE98memZmoMGVhCHD3kvIY57axrBNNhgo4lTFlemxsiOpD94CnTWpeug4WQZ3eFh/hWKJ7wYN0KuJYWqYsFvmledduYa31ZS5LU2KXsW8C8FLdtggsAn4a1Y2DqmOu2TF0CiMXQNSO4QYiDY3+aF4F37r5AspUaH0CnXdjzwxCbL1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QGYVZBVpxFiVcrLZPdqRL/HOoP064M755vxrJxf5qMY=;
+ b=nr3tYq3tlFGZALP+4egEye0/K3eAkVKQdWOWCsFzVcc1U0bJAJplEWcfwqvPVqvMUWVK7u2xu7GaspU3EZq/BCZvg2nFTrabU3jQq68dHlt5Qmkg4kPgHThkPrIzsFxEYZDtzsY4kG67GGJS3X89jKAB86blELjNynvm+m0IAj+7DrpKLNjz09UWEcImLmAhLbpitLOFVhT7qkmoMlCAn+gUA4sQP60aIeM6hmxQSbNLmKkuUtc06ypQewB5FXYrUGpd01TYsBf6CpG/um9D+f/HC/746ctGV7Xjx2BeV1MsKrGm8LaUi2pw9u6IHfoCkK/wazPf6Lw9/QMs1PRb9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QGYVZBVpxFiVcrLZPdqRL/HOoP064M755vxrJxf5qMY=;
+ b=nNawxjiP75yufKWtQcU57vDsaCnBtQfpLGP1naRw0U1KSR5ToBQHD00hblOlYwpS6dkgWvwWCMENkG6KMQi2xBl+sSb5Xhkf9roFzed6OtecbBVuuDy+yO0sZbKEaH4vQzDYO+oqR07vqx463Mrr16xn1nTRUL4f+C4646Gr+Rdw6nRla8YPj+kx6kAMdhENC/cXjrkUeLT/R5ShgA2rz1PCvav8PuBxlKrcgiEEvX0SfVXwa1j7pFOiwSbHECQ6H2w5JInKQfhK71zPLLJFTAXw9+RpEccdHJXcF12+XtFqKGIazVHLvePvmUGmYIHpY3jP01Af1q5N1ue79yw9Xw==
+Received: from PUWP216MB2550.KORP216.PROD.OUTLOOK.COM (2603:1096:301:140::10)
+ by PU4P216MB1324.KORP216.PROD.OUTLOOK.COM (2603:1096:301:a8::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.18; Thu, 12 Sep
+ 2024 12:42:38 +0000
+Received: from PUWP216MB2550.KORP216.PROD.OUTLOOK.COM
+ ([fe80::37e8:efa:15ed:c23]) by PUWP216MB2550.KORP216.PROD.OUTLOOK.COM
+ ([fe80::37e8:efa:15ed:c23%4]) with mapi id 15.20.7962.018; Thu, 12 Sep 2024
+ 12:42:38 +0000
+From: Ananya Roy <annroy212@outlook.com>
+To: Pratham Gupta <Pratham.Gupta@devrev.ai>, "devspintly@qatesting.xyz"
+	<devspintly@qatesting.xyz>
+Subject: Re: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+Thread-Topic: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+Thread-Index: AQHbBRDq+LpFp7TaBEuH0x5HrvRFmbJUGFWP
+Date: Thu, 12 Sep 2024 12:42:38 +0000
+Message-ID:
+ <PUWP216MB255027A8D10F7A74212AC40DE8642@PUWP216MB2550.KORP216.PROD.OUTLOOK.COM>
+References:
+ <CAP8X3uZ69ianPWKnRZDmiikXpHqWTyLsS+FW0g6UifXp7kdfrg@mail.gmail.com>
+In-Reply-To:
+ <CAP8X3uZ69ianPWKnRZDmiikXpHqWTyLsS+FW0g6UifXp7kdfrg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PUWP216MB2550:EE_|PU4P216MB1324:EE_
+x-ms-office365-filtering-correlation-id: 62975dca-31d0-4604-2e48-08dcd3286260
+x-microsoft-antispam:
+ BCL:0;ARA:14566002|37102599003|461199028|15030799003|15080799006|8060799006|19110799003|3412199025|440099028|102099032;
+x-microsoft-antispam-message-info:
+ Bu3gsM0QCI14vttmAYvwFDsSk2fIOA/HVoAUVYsajZOAUXD+CllEn4YLVqxdYDDYxF+L9b09mHXjkyk9iHn2a8e3UB40IRpD/nVGKBqqKzQVVBnebj7ceSCpkNMaQV4BUQulEKxJM9Az3lG3v9+nxVid37gZn5aUS/vXhw7vgLYdE2Br9OSz42JxQdijVsqeEHGAi+Hrkc2pG3W1EV1m8Kx2yxsN7NmFJO4zX2KFLI/wBns0lZfs683B9FalwlTunewNLDTtFQk5huHA/NpzX9OnXS64J42l5tpNSrvgvxP+Wf54BYM5XpDgQ1k9AgjWu+9FcuJ+mQN19rUVyiKXIYwv+IJzpPoHPLBIFVNdhtxfMzRvk2uO8Wms/iUKMwb51NRajqmY4N5OYAz2JgJ1P+FTbSXaxb64SklFW7VDcw90aN4qK1B6k4z0tNddHvjTYttoC4Pim40w8JU5OqJWPEFxWoC3BxDj9POwQ9ULzSFYLGAX7ZdeRP30RbLIhpRwqwO7cslU1R/FlpJjy2zChuac1oDueFxf/YtbHUV+TJl4yXYI+QJBlxezeWWbZs1vqDMO08QNF9Oy1JqtxCMLuKdkRR5tMu+jnAJXhF3kBfTYxfUmk/i/9sk1Z22tEZT+PfCgy2Gc4JTq5+M4zwUKkF7G0LLwUlnqQwp7to+fWryISbgSi9jZ9Wxdbp1gnRjOKFhBwi9CD7jLRqFjQUd8HcikwDLpHvl2IzuTDos7iT2bi7+1OVeGSbeaoeHBnn4f
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?qrGh0TMAUQAZoKJvGBewfxbRL9qxixmXtEg8c2pu/Ai5mlKliSsM/074s2h4?=
+ =?us-ascii?Q?nVvXDZI2GZknF9cuiT068p1LzSCWm+kLdpRjfOqHBC+3oqrxLbxFuGK2tmTv?=
+ =?us-ascii?Q?q/FQ0pQPTf6r/erxWRAQX1qwH74gx5f1CeFKNsOANY+vXTJ/LZAsL2on/bGa?=
+ =?us-ascii?Q?IF9OMOBd71TiU/ZSUrBsjaAdnvu2WMdiE2sV0PYSqBEukv75cY+kmH0BOspb?=
+ =?us-ascii?Q?Yvdib6h78vCOhhawrhRUTkMe0mSTMIGl3sXl8iqyx9g17cdPEv9+jn+srChW?=
+ =?us-ascii?Q?RmKt09YsTpKWqaFSiLYvq+QlKkP/qLu8BDgIXeENUzN1O6dpcfKK2KokxYxl?=
+ =?us-ascii?Q?U2ZXROHELvEKHsibX8x/JFNlguYczMTRpRVybkz1orqTOB5DeBbKhLb2fDen?=
+ =?us-ascii?Q?66nobkn96o3vDuVFh5+mFuIUd9mv9BE2WZri4pNcy5b1y8JR74B7AMTgxXpy?=
+ =?us-ascii?Q?0jfCSdk3vpatKEiUbpK/EkaH2TNpnIFqAaeGGyjnbhqsda/rhadBbV1apiOU?=
+ =?us-ascii?Q?H1zxXGaMnAmaD1NbY8CmA3O2QJRGSg6U9OR1q8WECW2dSAxDrUDBaIkTQkGM?=
+ =?us-ascii?Q?7PItBqi7p4JWpZKK8mDqypJSqtcpqUgBCugSV30eEEvCPRszhSMZpku4eJNM?=
+ =?us-ascii?Q?21zUmRIyDQACMdszs33rX2J2c100b2pYX2V5X3jqF6VgMW+aRkDaHeytwbyO?=
+ =?us-ascii?Q?xa5krU1rKRV+FQkSaezgctezO0+bPzAUxyucP2TiTy8hW+MvXNYFeWDNoFq3?=
+ =?us-ascii?Q?Q7Eiwb0q/gTWno/RuFwegi69rc1+lHAO8qz+xeI2NRtrBGgHgB1EkO9oN0Xf?=
+ =?us-ascii?Q?ctcVUPihukfNJyZQUulGds1n+ov8bz7nDSFuhoHeuMPEvDQuZqBmAhxRWNY5?=
+ =?us-ascii?Q?wA2P9GdpqRRSVZw/P6GCCeGAcF8jP7Py8ulAYuZBpXGJIakf8D3R2/zRghKb?=
+ =?us-ascii?Q?xr+VM0bO5ogysEDxgsCFe4tFGbSSyaGdGwS9jQD4tgm3SYGngPtQ0gWhcFoI?=
+ =?us-ascii?Q?1rnIFkn1FPxqvjNdn7zL/It+B4sNjoTa7StTz4pRYOnSWSGmHll4KyHgziRB?=
+ =?us-ascii?Q?tDXv7fPrciBETgrT8qMPLTnOjKQ7N7XlYdGJEC49pQqLopwCgWIVTEaM8Cbw?=
+ =?us-ascii?Q?adGUHiwftKjlwsECX0LGvv+lpOF+hTApKXypp/54URQQ3OtRODJtOGPMPO1X?=
+ =?us-ascii?Q?Q1cFxJVrCDNg01AqXsn7dOk8Tpmt7dWC68NQwhP2I8oHa8LeCOzZI/B/nmU?=
+ =?us-ascii?Q?=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_PUWP216MB255027A8D10F7A74212AC40DE8642PUWP216MB2550KORP_"
+MIME-Version: 1.0
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PUWP216MB2550.KORP216.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 62975dca-31d0-4604-2e48-08dcd3286260
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2024 12:42:38.2271
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU4P216MB1324
+X-CMAE-Envelope: MS4xfLKcDG6f9QdfMBE8gCLF77RcTPPu76p3XF5kPe3zIIxBwBG9Kbz184OQuaWAqQzYSuFdd2YZ6DlBI68gAiiz4uKS8CEtflGbVyCyFLtUlM2vfgtuu/Ea
+ eL/EL5vLrI63HW0XWMA5aknfNFKF+dlGtuYpHscFz+BknBlTu/CjZmaoroPv3+GaT9bhZpFa1Nayv4vfnYuZPTHI/xLLgsunUnIXhfzudfkFP1yQMCV0x38G
+ I2aT0ZEmLw4V7r1aJ6aDQhnqsNubujTPBprzc5tPa7IH6FeLmITq/MuaNro5lVzPUAQJDzdhemKbdSIROuEJRw==
+
+--_000_PUWP216MB255027A8D10F7A74212AC40DE8642PUWP216MB2550KORP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Testing from Outlook
+________________________________
+From: Pratham Gupta <Pratham.Gupta@devrev.ai>
+Sent: Thursday, September 12, 2024 6:10 PM
+To: devspintly@qatesting.xyz <devspintly@qatesting.xyz>
+Subject: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in ultricies=
+ eros. Sed malesuada eleifend dui sed venenatis. Nulla porta turpis felis. =
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inc=
+eptos himenaeos. Nunc euismod tempus ante ut dapibus. Aliquam elementum odi=
+o ut justo tristique, nec porta est viverra. Etiam posuere tristique purus =
+vitae ultrices. Fusce rutrum enim non tempor eleifend. Etiam semper purus v=
+itae justo placerat, nec mattis eros euismod. Duis a posuere nisi, et viver=
+ra ligula.
+
+Etiam lobortis porttitor condimentum. Praesent tincidunt sollicitudin nunc =
+eu faucibus. Integer at eros semper, sagittis diam et, hendrerit sapien. Su=
+spendisse aliquet nisl tortor, at ullamcorper ex dictum in. Proin arcu metu=
+s, dapibus vitae elit ac, malesuada tincidunt magna. Curabitur vel metus ma=
+ssa. Ut et risus lobortis magna hendrerit sagittis. Morbi cursus vitae erat=
+ eget ultrices. Donec mattis, dui id viverra eleifend, eros felis laoreet e=
+lit, vel interdum dui ex ut est.
+
+Sed mollis rhoncus mi non tempor. Nulla ante arcu, aliquam vel quam eget, t=
+ristique sagittis neque. Sed hendrerit, turpis sed pulvinar pretium, augue =
+ante venenatis diam, non laoreet risus mauris vel tortor. Integer elementum=
+ ligula at dui gravida eleifend. Quisque maximus elementum nulla. Cras et j=
+usto id ipsum vulputate pretium. In elementum ipsum vitae arcu dictum, et u=
+ltrices purus vestibulum. Proin vestibulum, massa at fermentum tristique, l=
+igula orci eleifend lacus, vel dictum nulla odio id ligula. Integer posuere=
+ venenatis nunc, quis lobortis diam rhoncus nec. Fusce dapibus justo eu lao=
+reet sollicitudin.
+
+In hac habitasse platea dictumst. Fusce consequat aliquet nunc. Suspendisse=
+ a quam a purus suscipit finibus vitae eget arcu. Aliquam ligula lorem, pel=
+lentesque eget consectetur nec, interdum a metus. Etiam nisl purus, maximus=
+ ut dolor non, bibendum gravida nisi. Donec posuere varius cursus. Nunc fau=
+cibus ut nulla vel mollis. Sed massa felis, iaculis ut quam dictum, commodo=
+ pharetra ex.
+
+Vestibulum elit justo, faucibus nec tempus in, fermentum at libero. Suspend=
+isse lectus diam, aliquet eget nibh a, rhoncus lobortis urna. In eu enim eg=
+et enim molestie egestas. Pellentesque placerat, ex nec luctus dictum, nequ=
+e quam venenatis nisl, in porta velit diam nec risus. Sed molestie est odio=
+. Etiam id consequat nisl, in mollis ligula. Vivamus lobortis urna non arcu=
+ bibendum accumsan. Sed eget feugiat neque. Vivamus sagittis neque enim, vi=
+tae gravida massa tristique eu. Vivamus auctor eu massa ut bibendum. Ut con=
+sequat, nulla ac facilisis pharetra, lectus odio pretium eros, at efficitur=
+ ligula felis vitae urna. Nullam fermentum, lorem sed mattis commodo, orci =
+augue molestie magna, eget bibendum risus velit nec arcu.
+
+
+--_000_PUWP216MB255027A8D10F7A74212AC40DE8642PUWP216MB2550KORP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Testing from Outlook</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Pratham Gupta &lt;Pra=
+tham.Gupta@devrev.ai&gt;<br>
+<b>Sent:</b> Thursday, September 12, 2024 6:10 PM<br>
+<b>To:</b> devspintly@qatesting.xyz &lt;devspintly@qatesting.xyz&gt;<br>
+<b>Subject:</b> Neque porro quisquam est qui dolorem ipsum quia dolor sit a=
+met,</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div id=3D"x_gmail-lipsum" style=3D"margin:0px; padding:0px; text-align:jus=
+tify; color:rgb(0,0,0); font-family:&quot;Open Sans&quot;,Arial,sans-serif;=
+ font-size:14px">
+<p style=3D"margin:0px 0px 15px; padding:0px">Lorem ipsum dolor sit amet, c=
+onsectetur adipiscing elit. Morbi in ultricies eros. Sed malesuada eleifend=
+ dui sed venenatis. Nulla porta turpis felis. Class aptent taciti sociosqu =
+ad litora torquent per conubia nostra,
+ per inceptos himenaeos. Nunc euismod tempus ante ut dapibus. Aliquam eleme=
+ntum odio ut justo tristique, nec porta est viverra. Etiam posuere tristiqu=
+e purus vitae ultrices. Fusce rutrum enim non tempor eleifend. Etiam semper=
+ purus vitae justo placerat, nec
+ mattis eros euismod. Duis a posuere nisi, et viverra ligula.</p>
+<p style=3D"margin:0px 0px 15px; padding:0px">Etiam lobortis porttitor cond=
+imentum. Praesent tincidunt sollicitudin nunc eu faucibus. Integer at eros =
+semper, sagittis diam et, hendrerit sapien. Suspendisse aliquet nisl tortor=
+, at ullamcorper ex dictum in. Proin
+ arcu metus, dapibus vitae elit ac, malesuada tincidunt magna. Curabitur ve=
+l metus massa. Ut et risus lobortis magna hendrerit sagittis. Morbi cursus =
+vitae erat eget ultrices. Donec mattis, dui id viverra eleifend, eros felis=
+ laoreet elit, vel interdum dui
+ ex ut est.</p>
+<p style=3D"margin:0px 0px 15px; padding:0px">Sed mollis rhoncus mi non tem=
+por. Nulla ante arcu, aliquam vel quam eget, tristique sagittis neque. Sed =
+hendrerit, turpis sed pulvinar pretium, augue ante venenatis diam, non laor=
+eet risus mauris vel tortor. Integer
+ elementum ligula at dui gravida eleifend. Quisque maximus elementum nulla.=
+ Cras et justo id ipsum vulputate pretium. In elementum ipsum vitae arcu di=
+ctum, et ultrices purus vestibulum. Proin vestibulum, massa at fermentum tr=
+istique, ligula orci eleifend lacus,
+ vel dictum nulla odio id ligula. Integer posuere venenatis nunc, quis lobo=
+rtis diam rhoncus nec. Fusce dapibus justo eu laoreet sollicitudin.</p>
+<p style=3D"margin:0px 0px 15px; padding:0px">In hac habitasse platea dictu=
+mst. Fusce consequat aliquet nunc. Suspendisse a quam a purus suscipit fini=
+bus vitae eget arcu. Aliquam ligula lorem, pellentesque eget consectetur ne=
+c, interdum a metus. Etiam nisl purus,
+ maximus ut dolor non, bibendum gravida nisi. Donec posuere varius cursus. =
+Nunc faucibus ut nulla vel mollis. Sed massa felis, iaculis ut quam dictum,=
+ commodo pharetra ex.</p>
+<p style=3D"margin:0px 0px 15px; padding:0px">Vestibulum elit justo, faucib=
+us nec tempus in, fermentum at libero. Suspendisse lectus diam, aliquet ege=
+t nibh a, rhoncus lobortis urna. In eu enim eget enim molestie egestas. Pel=
+lentesque placerat, ex nec luctus
+ dictum, neque quam venenatis nisl, in porta velit diam nec risus. Sed mole=
+stie est odio. Etiam id consequat nisl, in mollis ligula. Vivamus lobortis =
+urna non arcu bibendum accumsan. Sed eget feugiat neque. Vivamus sagittis n=
+eque enim, vitae gravida massa tristique
+ eu. Vivamus auctor eu massa ut bibendum. Ut consequat, nulla ac facilisis =
+pharetra, lectus odio pretium eros, at efficitur ligula felis vitae urna. N=
+ullam fermentum, lorem sed mattis commodo, orci augue molestie magna, eget =
+bibendum risus velit nec arcu.</p>
+</div>
+<br class=3D"x_gmail-Apple-interchange-newline">
+</div>
+</div>
+</body>
+</html>
+
+--_000_PUWP216MB255027A8D10F7A74212AC40DE8642PUWP216MB2550KORP_--

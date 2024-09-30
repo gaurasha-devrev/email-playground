@@ -1,0 +1,82 @@
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Testing from Outlook</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Pratham Gupta &lt;Pra=
+tham.Gupta@devrev.ai&gt;<br>
+<b>Sent:</b> Thursday, September 12, 2024 6:10 PM<br>
+<b>To:</b> devspintly@qatesting.xyz &lt;devspintly@qatesting.xyz&gt;<br>
+<b>Subject:</b> Neque porro quisquam est qui dolorem ipsum quia dolor sit a=
+met,</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div id=3D"x_gmail-lipsum" style=3D"margin:0px; padding:0px; text-align:jus=
+tify; color:rgb(0,0,0); font-family:&quot;Open Sans&quot;,Arial,sans-serif;=
+ font-size:14px">
+<p style=3D"margin:0px 0px 15px; padding:0px">Lorem ipsum dolor sit amet, c=
+onsectetur adipiscing elit. Morbi in ultricies eros. Sed malesuada eleifend=
+ dui sed venenatis. Nulla porta turpis felis. Class aptent taciti sociosqu =
+ad litora torquent per conubia nostra,
+ per inceptos himenaeos. Nunc euismod tempus ante ut dapibus. Aliquam eleme=
+ntum odio ut justo tristique, nec porta est viverra. Etiam posuere tristiqu=
+e purus vitae ultrices. Fusce rutrum enim non tempor eleifend. Etiam semper=
+ purus vitae justo placerat, nec
+ mattis eros euismod. Duis a posuere nisi, et viverra ligula.</p>
+<p style=3D"margin:0px 0px 15px; padding:0px">Etiam lobortis porttitor cond=
+imentum. Praesent tincidunt sollicitudin nunc eu faucibus. Integer at eros =
+semper, sagittis diam et, hendrerit sapien. Suspendisse aliquet nisl tortor=
+, at ullamcorper ex dictum in. Proin
+ arcu metus, dapibus vitae elit ac, malesuada tincidunt magna. Curabitur ve=
+l metus massa. Ut et risus lobortis magna hendrerit sagittis. Morbi cursus =
+vitae erat eget ultrices. Donec mattis, dui id viverra eleifend, eros felis=
+ laoreet elit, vel interdum dui
+ ex ut est.</p>
+<p style=3D"margin:0px 0px 15px; padding:0px">Sed mollis rhoncus mi non tem=
+por. Nulla ante arcu, aliquam vel quam eget, tristique sagittis neque. Sed =
+hendrerit, turpis sed pulvinar pretium, augue ante venenatis diam, non laor=
+eet risus mauris vel tortor. Integer
+ elementum ligula at dui gravida eleifend. Quisque maximus elementum nulla.=
+ Cras et justo id ipsum vulputate pretium. In elementum ipsum vitae arcu di=
+ctum, et ultrices purus vestibulum. Proin vestibulum, massa at fermentum tr=
+istique, ligula orci eleifend lacus,
+ vel dictum nulla odio id ligula. Integer posuere venenatis nunc, quis lobo=
+rtis diam rhoncus nec. Fusce dapibus justo eu laoreet sollicitudin.</p>
+<p style=3D"margin:0px 0px 15px; padding:0px">In hac habitasse platea dictu=
+mst. Fusce consequat aliquet nunc. Suspendisse a quam a purus suscipit fini=
+bus vitae eget arcu. Aliquam ligula lorem, pellentesque eget consectetur ne=
+c, interdum a metus. Etiam nisl purus,
+ maximus ut dolor non, bibendum gravida nisi. Donec posuere varius cursus. =
+Nunc faucibus ut nulla vel mollis. Sed massa felis, iaculis ut quam dictum,=
+ commodo pharetra ex.</p>
+<p style=3D"margin:0px 0px 15px; padding:0px">Vestibulum elit justo, faucib=
+us nec tempus in, fermentum at libero. Suspendisse lectus diam, aliquet ege=
+t nibh a, rhoncus lobortis urna. In eu enim eget enim molestie egestas. Pel=
+lentesque placerat, ex nec luctus
+ dictum, neque quam venenatis nisl, in porta velit diam nec risus. Sed mole=
+stie est odio. Etiam id consequat nisl, in mollis ligula. Vivamus lobortis =
+urna non arcu bibendum accumsan. Sed eget feugiat neque. Vivamus sagittis n=
+eque enim, vitae gravida massa tristique
+ eu. Vivamus auctor eu massa ut bibendum. Ut consequat, nulla ac facilisis =
+pharetra, lectus odio pretium eros, at efficitur ligula felis vitae urna. N=
+ullam fermentum, lorem sed mattis commodo, orci augue molestie magna, eget =
+bibendum risus velit nec arcu.</p>
+</div>
+<br class=3D"x_gmail-Apple-interchange-newline">
+</div>
+</div>
+</body>
+</html>

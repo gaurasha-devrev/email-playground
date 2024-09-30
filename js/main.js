@@ -27,8 +27,11 @@ function extractHtmlFromEml(filePath) {
 }
 
 // Usage
-const emlFilePath1 = 'eml/email_1.eml'; // Replace with your .eml file path
-const emlFilePath2 = 'eml/email_1_1.eml'; // Replace with your .eml file path
+// const emlFilePath1 = 'eml/email_1.eml'; 
+// const emlFilePath2 = 'eml/email_1_1.eml'; 
+
+const emlFilePath1 = 'eml/email_2.eml'; 
+const emlFilePath2 = 'eml/email_2_1.eml';
 
 Promise.all([extractHtmlFromEml(emlFilePath1), extractHtmlFromEml(emlFilePath2)])
     .then(([html1, html2]) => {

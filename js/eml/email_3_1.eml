@@ -1,0 +1,262 @@
+Return-Path: <srs0=58qq=qw=outlook.com=pratham.gupta10@bounce.secureserver.net>
+Received: from sxb1plwbeout02.prod.sxb1.secureserver.net (sxb1plwbeout02.prod.sxb1.secureserver.net [188.121.53.193])
+ by inbound-smtp.us-east-1.amazonaws.com with SMTP id qjhig7figg84g9cqht9f993s5746diu6jin3o0g1
+ for v1.444d70557235797a.66e28f109a1948088b271b9bd137b3ca@hooks.dev.devrev-eng.ai;
+ Tue, 24 Sep 2024 06:44:33 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of bounce.secureserver.net designates 188.121.53.193 as permitted sender) client-ip=188.121.53.193; envelope-from=srs0=58qq=qw=outlook.com=pratham.gupta10@bounce.secureserver.net; helo=sxb1plwbeout02.prod.sxb1.secureserver.net;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of bounce.secureserver.net designates 188.121.53.193 as permitted sender) client-ip=188.121.53.193; envelope-from=srs0=58qq=qw=outlook.com=pratham.gupta10@bounce.secureserver.net; helo=sxb1plwbeout02.prod.sxb1.secureserver.net;
+ dkim=pass header.i=@outlook.com;
+ dmarc=pass header.from=outlook.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFIcW85T2Q4aUlhRXlCMmJGWFhXYytoY1hVK1BlWTlQbFBXcG8rSXNMMjNuc3dBSTc1SHhQT1NGSjVHRzU3MHg2MXNhNzd3WFZNaktXVFlTdjVRS01ZcmdLc1hheGVHc0JGQ1cweVhnREpoQ2xaY01KOTUzMitGNGkyVVpoR250UDVMNmJ0bzlReFJUclpIQkVxRzkzNDliWWo0VDJRUEp1SlEzQy93OGxWWHl6Q1BWaDF6MzFCNDVyK045SnpqcEtiMTJ1WDV3TWVaVldtNDBSNUpxV2grNDY4N1hmY09ZYithbUJHc2FuQS9YSE1oeUI0Wk1qa0h0V2JWaGtwYkNTSGltNWV1ZGhhcmY4VW1hRW1aanVtTzBRb0p4ejBadThmNE5sczc0OTIwa2t3aUJpbVl4ZEtmYjRjWGZhd0s3QlEwV3dwTlZ4QTM1RkJ4dGM3amhtRmJqcHVVbWVJU29PdjJsejl1Q2FIOUlRPT0=
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=ae6OT5T+T7niPWxyhw0uETJfKGj5thRw0HBf65HiNCQdFx9n1TpAG47Y/YMkYJcDpreyZIdnDDes4P3Qwg6idH++RqHxizf1/n648U9lZjFUWtANCP9h3sGpaeqYAh00+XhP6giw30suvYsCygqB3ELv+xlhOSP3w46csRGVZhs=; c=relaxed/simple; s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1727160274; v=1; bh=d5wSWqnx05C0X+LgYPIy6tjO6zcyf185cxNl4XecwTg=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: from sxb1plibsmtp01-10.prod.sxb1.secureserver.net ([92.204.81.9])
+	by :WBEOUT: with ESMTPS
+	id szFksbkCRH9BbszHksfbGs; Mon, 23 Sep 2024 23:44:32 -0700
+X-CMAE-Analysis: v=2.4 cv=LZP36Sfi c=1 sm=1 tr=0 ts=66f25fd0
+ a=S03CNgCxNv7d2j1GHsLJxQ==:117 a=xqWC_Br6kY4A:10 a=EaEq8P2WXUwA:10
+ a=QcnCqVNls6sA:10 a=x7bEGLp0ZPQA:10 a=f4gtIBw_4cUA:10 a=WTX3094I1sgA:10
+ a=UqCG9HQmAAAA:8 a=qdHTjvGXAAAA:8 a=wMBHBpCfDTgi3BerR5sA:9 a=CjuIK1q_8ugA:10
+ a=6Ril-AqLFrMcFbx0:21 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10
+ a=Uz9EnhuHEG25YKoRyM-d:22 a=1-CIqIdh18cPtyj4NI4X:22
+X-SECURESERVER-ACCT: devspintly@qatesting.xyz
+X-SID: szFksbkCRH9Bb
+Received: from APC01-SG2-obe.outbound.protection.outlook.com ([40.92.53.80])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by CMGW with ESMTPS
+	id szHhsXY74U3UhszHjsB5P3; Mon, 23 Sep 2024 23:44:32 -0700
+X-CM-Forward: devspintly@qatesting.xyz
+X-CMAE-Analysis: v=2.4 cv=b7F54cGx c=1 sm=1 tr=0 ts=66f25fd0 cx=a_idp_e
+ a=/7uaDRg1P/9fTPtAV1lmpg==:117 a=xqWC_Br6kY4A:10 a=EaEq8P2WXUwA:10
+ a=QcnCqVNls6sA:10 a=x7bEGLp0ZPQA:10 a=f4gtIBw_4cUA:10 a=WTX3094I1sgA:10
+ a=UqCG9HQmAAAA:8 a=qdHTjvGXAAAA:8 a=wMBHBpCfDTgi3BerR5sA:9 a=CjuIK1q_8ugA:10
+ a=6Ril-AqLFrMcFbx0:21 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10
+ a=Uz9EnhuHEG25YKoRyM-d:22 a=1-CIqIdh18cPtyj4NI4X:22
+Authentication-Results: sxb1plibsmtp01-10.prod.sxb1.secureserver.net;
+	dkim=pass header.d=outlook.com header.b=WZSv44m4;
+	dmarc=pass header.from=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OBpgx/3PHrQmKUoCtHlRqCtCpqjaWZrTlN3s0y9skUjg1809e1//1u7QTvV76wKLWg8VEv+b5/JZJ0/jT96MqLDw+wm+35QkOU/xzXXT4b2T+/+LBFsF+0OLHJCchrVsVNIKpyM086KBt5dDdQRvlysUzNWd+B1acQb9vPvsHyW9QQxa1UXGUTyHwU8+rw2MvIIaHFMz4GroyCHoO7OboWJd0nBZiz3sP1BWjNBob8Wp/XucCTqPXpo0klZmOmNBE3gXu9NmxMXFA6F/dtJSf+lzKH8ekxQYOxEpMfiHDAZ806rZtMkbprRdN2XwbU3Ho/CGy07t9W1EnB7m88BTVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FsHeXZgzWh5e55Q+/yJ/kLB63Z5zzr230hQ3CeuBHKc=;
+ b=qr6PyyvjACOVWKd1UnZiy78Nl1tV21kNyKe2Obtqg8L1KYVH98AXfBWZx6DASYXXc1FwJRby6ivZ0kLHB9ohSHw3dWHGW5KVQrNs3ZtKCEAFjLxGu16vq6C0495JHJoalVeiDZzB5tz0b8rORlwi8/23/PyJkUX50MRozBE/U1WE3fZf6D7QvlBhC6Df4fm1KavYEY7lewkY0iLp6DP7FXtxBcCwV13Q1TLhSYrRWKQgn3FbpzfLY1BgGuG2A/Gk2w9xW2+IgSEQvBMraAEbDCsYsPpQnX3/6K4j5m3l5r4x1S4ssKr7wY5QmpGLWp9sUnmxCcs2PNIuL5MoiRQYSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FsHeXZgzWh5e55Q+/yJ/kLB63Z5zzr230hQ3CeuBHKc=;
+ b=WZSv44m4/rWGkjBnmM5+oMbpkC0LjT1XduSWIo1efKidDAhiTTbsuMbZEiXZlh2Y6cM4uz3ubkaQtirR1cVBYjrul2urDd1j+KLbE41QkY111MycrwPzcJ2SsCb1hW66nNJISDLmoCW5j0d4/wIWKL2ovtBZ6ei4Ei/y2kUJSmB1qraoFo9FIZ+ZvtqZPRsWZ+T8uzNozMa4mXH76ooij8Vxx8HdqAXENY1KGAYOcE8JWnYPhoT3XCdMGuEdnHzkJ54Lvmrcjv6yzbQnuCb8YkKTnkaMBUSR3Aqo9n5gXaTC04Ap/9h7eYDmoNWrutF79N6qMIKy/dlZ+I8Z48vS5Q==
+Received: from KL1PR03MB8415.apcprd03.prod.outlook.com (2603:1096:820:13a::14)
+ by KL1PR03MB8196.apcprd03.prod.outlook.com (2603:1096:820:109::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.27; Tue, 24 Sep
+ 2024 06:44:28 +0000
+Received: from KL1PR03MB8415.apcprd03.prod.outlook.com
+ ([fe80::ede2:baea:46a4:deae]) by KL1PR03MB8415.apcprd03.prod.outlook.com
+ ([fe80::ede2:baea:46a4:deae%5]) with mapi id 15.20.7982.022; Tue, 24 Sep 2024
+ 06:44:28 +0000
+From: Pratham Gupta <pratham.gupta10@outlook.com>
+To: "devspintly@qatesting.xyz" <devspintly@qatesting.xyz>
+Subject: Re: Test HTML trimming
+Thread-Topic: Test HTML trimming
+Thread-Index: AQHbDkzUvnPfI0dEhkqiLxZ2addinbJmfTfggAAAZCY=
+Date: Tue, 24 Sep 2024 06:44:28 +0000
+Message-ID:
+ <KL1PR03MB841585A40153B1D250B80020F7682@KL1PR03MB8415.apcprd03.prod.outlook.com>
+References:
+ <KL1PR03MB8415789A295E99CBBA9CABBAF7682@KL1PR03MB8415.apcprd03.prod.outlook.com>
+ <KL1PR03MB841508EF5CB2079BF757D938F7682@KL1PR03MB8415.apcprd03.prod.outlook.com>
+In-Reply-To:
+ <KL1PR03MB841508EF5CB2079BF757D938F7682@KL1PR03MB8415.apcprd03.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: KL1PR03MB8415:EE_|KL1PR03MB8196:EE_
+x-ms-office365-filtering-correlation-id: 675c3b86-9fa3-4665-77db-08dcdc645644
+x-microsoft-antispam:
+ BCL:0;ARA:14566002|461199028|8060799006|15030799003|19110799003|37102599003|15080799006|8062599003|440099028|3412199025|102099032;
+x-microsoft-antispam-message-info:
+ zvahsaAoP6AZhHvtkPLGGTM2HwXBZ1xbPVW5J4mpG6Eb4TcA3DZ/biSI/SJyh1TR+3RT8nHVEXH16E/Qc1gtwtXa9LiqrblV9X0mtCeZ2twfBWHxI7Rb76pVyVcRiLIVF8newgPKcpSm0lcLLpKXOJbN0SDegyxiKJ8g0MLID7bUm3+jGcQBLoJCTM0BNFVeH9eeznCZn3cVRPO1iNeGOWVwfBpBNCE/WR0KfpisYvX6Ldlrje8bqRcU9/rldyEteK3CeIW1ZAVtegl9t4V/GhdrJMU2iGJvnVep/abS9cFna8QQHTv42lw7qmQtCb0tbKE7T6p7JyNuM0nniIEQbHPcf8uWU1WjCkRr31r334S7FhQV8dCdD1Ln7xKGziwBV5khWJWDpwdHUiL7i51F9E7s5G5LsxxLWRUvNL3kysLxAZqtYlBe3soniT3SSEd3lFUtWYxcFDfffbcTgqVQZns23b4UT0/Y+RFLSJOgt2prs3Q4KHGLynKLf9yaSjciHbg0ODvkcntMu/ccj2nh3ZJfUFjw79hFY7RrztfVrg6OhfujYbWkqw7lNdGUjDXeM2AfE0mJUCBwIELEu4vIbNwi/HoR4R7MFckZzTCZKYLwcJZGoUoUu0D+jCZv2XuBjwc80f6wO0NWSaMfoYUJZPxdjvXR+5EnbccpaxzdZLpjj7yAZV4L2U0NAVNhXxokypzF9Obcdl1Df1hvCXAuMSOBD2o/nfazoM2rXsy9Xv6+Uw1oc29rBJlMr289eCTQaPqQaMJXu2TPIsUqpnKg4Q==
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?7tj2Is9v9bAgt3Drc37mV02VYkZ095hIvUXgcx+l1jHE9jeuyxgHIEOXJH7F?=
+ =?us-ascii?Q?M5rym70TIqnGbw8RYAFLwTTtEY1ujx/SK325oXroWxOzTV3MqAB1IEhmX2Zp?=
+ =?us-ascii?Q?SO1yc2QDY6tzerpd1aJyOyn5G8Ts7L4m3aI4BIWn2w4vqADTYtAW/oLQ0EM0?=
+ =?us-ascii?Q?1rDeZCtqdFofGq1fxweobsmNAf22g3R5blPJPrFWnUaOkT5xA+UqPDKXGA5/?=
+ =?us-ascii?Q?b9ocXPb9hNWV2klGfaknztDWQ3MgFB1FOxm5CnEIggnVyuWI/LzwryKUc8a+?=
+ =?us-ascii?Q?3r/mTM/Ogyu0y+QPCJCyOVm4ET+QmstbhGyXF9xFMWJXP7UcLfg3F8l5/4Mm?=
+ =?us-ascii?Q?H0GmxrlfQu4tb9LmrsC9SGk3twOGOy8g8Q451ghxuu3OncrTI5vJJZB6kdLH?=
+ =?us-ascii?Q?W1SWRh42JHZzO7U7r8OQvQW9WoQwEpNKZcBGHQwTajswY5rcjy7HgRdk3C4V?=
+ =?us-ascii?Q?wJlYb/JsAyX0Jao/ZBMCajDtUUBptfSDJ1g2m7wUJGEwFw6FN/8aaFyaeCgv?=
+ =?us-ascii?Q?ytN1GBg1XOjPibX7J7Tuw1G5i6uFQX5OjuBKd8YNhiUHoXuWTFsEcQoUTl/i?=
+ =?us-ascii?Q?FYci/oNZDB59cjY5zTuQSkaQB7joILES8kInM0D4MdAo/xtrChrttI0vR2In?=
+ =?us-ascii?Q?ZhUsXBmKbuCrArnnJ1ebZ6rAhNL7Alu5Ot7kQm7U4vf6bOGdt4fSdBLRvdsm?=
+ =?us-ascii?Q?wuATJkuwSC6WHYvzuFAkRfOH+dGXcq9KuwVsf+KNE2vI6Sph+81ckq2/Mxei?=
+ =?us-ascii?Q?zMPfOoRnnrbNax7wS0pwYqE755XdfQBuITtRUybdcMfFEAT2eBvNTpzAGNbs?=
+ =?us-ascii?Q?a4FFASz3+IgnHhLprijjmtGGwovLEAEBsZkoTE3aCrGt3FcHZQRFNbwHYv4l?=
+ =?us-ascii?Q?Z3I59eQ5ShxmjlhEjUzE4JpiaoR9M6X7Tsg5fD44nyeotnzAolyTECfFVvxi?=
+ =?us-ascii?Q?x5WyMBWsMJhlmGN6RpMbn+NHEcp4EMsU9WIoYZoIWBLej4omSmDWe3D+VMxJ?=
+ =?us-ascii?Q?I7rjXMq9C+IkJ3OIXUIVWfY42QGiD5rmss8Z27XmYSdZkLDb36YL7l/DiVtf?=
+ =?us-ascii?Q?+AChiDxuRuCy0iMySsvvzwxT04ctjswsvI+DJg+SWTqlVR4WTz19TUPaC/uY?=
+ =?us-ascii?Q?8oawZzOCJtN8NIDVHpTd6w3QFW/rCOEbhkyVMBWXypb1Qh4NJykqOMtoHJsW?=
+ =?us-ascii?Q?nBk66/WWeW0tAsDbTzy/mgpx3O3QZbdzBKxbMoUi9iDOYLYghMTx60j78IA?=
+ =?us-ascii?Q?=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_KL1PR03MB841585A40153B1D250B80020F7682KL1PR03MB8415apcp_"
+MIME-Version: 1.0
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB8415.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 675c3b86-9fa3-4665-77db-08dcdc645644
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2024 06:44:28.1507
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB8196
+X-CMAE-Envelope: MS4xfL2Jy34J0H/3skIEKeuBF//AmmGk3+9tBdne6P16SPaNizQpSN/MjpSjPFDBACHmsNxm4/si8+fohGgh0bnfBOsGbiflE0DHrrMx9RWad/Nic0S+dZxc
+ o2IdcvTs9D8dmkUzweZRQv2Y1AvJqBKafWAm3WZEicnOAEsfKBHuy7wY9n9z/JlW52xGo9xFFilMukUPJBy3zz4oFA1cf2G4ptJ29UInlOPSKcrxLITffoLI
+ sAkjEvBmWoF4LaF7nAPKESNh534um558kC6O5W+sh8Wxl5w64DBgkN3vdVZlIF92Kbk+BEPr0XKcihEodFd4sg==
+
+--_000_KL1PR03MB841585A40153B1D250B80020F7682KL1PR03MB8415apcp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Proper formatting\
+
+
+Dsgag
+
+
+slkgjlkgj
+
+
+sdgg;skdd;g
+________________________________
+From: Pratham Gupta <pratham.gupta10@outlook.com>
+Sent: 24 September 2024 12:12
+To: devspintly@qatesting.xyz <devspintly@qatesting.xyz>
+Subject: Re: Test HTML trimming
+
+reply
+________________________________
+From: Pratham Gupta
+Sent: 24 September 2024 12:11
+To: devspintly@qatesting.xyz <devspintly@qatesting.xyz>
+Subject: Test HTML trimming
+
+klsjdlsjg
+
+--_000_KL1PR03MB841585A40153B1D250B80020F7682KL1PR03MB8415apcp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Proper <span style=3D"color: rgb(237, 92, 87);">formatting\</span></div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(237, 92, 87);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(237, 92, 87);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(237, 92, 87);">
+<b><i>Dsgag&nbsp;</i></b></div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(237, 92, 87);">
+<b><i><br>
+</i></b></div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(237, 92, 87);">
+<b><i><br>
+</i></b></div>
+<div class=3D"elementToProof" style=3D"font-family: &quot;Arial Black&quot;=
+, Arial, sans-serif; font-size: 20pt; color: rgb(237, 92, 87);">
+<i><u>slkgjlkgj</u></i></div>
+<div class=3D"elementToProof" style=3D"font-family: &quot;Arial Black&quot;=
+, Arial, sans-serif; font-size: 20pt; color: rgb(237, 92, 87);">
+<i><u><br>
+</u></i></div>
+<div class=3D"elementToProof" style=3D"font-family: &quot;Arial Black&quot;=
+, Arial, sans-serif; font-size: 20pt; color: rgb(237, 92, 87);">
+<i><u><br>
+</u></i></div>
+<div class=3D"elementToProof" style=3D"font-family: &quot;Arial Black&quot;=
+, Arial, sans-serif; font-size: 20pt; color: rgb(12, 136, 42);">
+<i><u>sdgg;skdd;g</u></i></div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Pratham Gupta &lt;pra=
+tham.gupta10@outlook.com&gt;<br>
+<b>Sent:</b> 24 September 2024 12:12<br>
+<b>To:</b> devspintly@qatesting.xyz &lt;devspintly@qatesting.xyz&gt;<br>
+<b>Subject:</b> Re: Test HTML trimming</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+reply</div>
+<div id=3D"x_appendonsend"></div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Pratham Gupta<br>
+<b>Sent:</b> 24 September 2024 12:11<br>
+<b>To:</b> devspintly@qatesting.xyz &lt;devspintly@qatesting.xyz&gt;<br>
+<b>Subject:</b> Test HTML trimming</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div class=3D"x_x_elementToProof" style=3D"font-family:Aptos,Aptos_Embedded=
+Font,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; colo=
+r:rgb(0,0,0)">
+klsjdlsjg</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_KL1PR03MB841585A40153B1D250B80020F7682KL1PR03MB8415apcp_--
